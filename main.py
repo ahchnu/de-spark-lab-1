@@ -19,11 +19,9 @@ def main():
         
         if commit_messages and isinstance(commit_messages, list):
             for commit_message in commit_messages:
-                words = commit_message.lower().split()
-                
-                segments = [commit_message[i:i + n] for i in range(0, len(commit_message), n) if len(commit_message[i:i + n].strip()) == 3]
+                segments = [commit_message[i:i + n].lower() for i in range(0, len(commit_message), n) if len(commit_message[i:i + n].strip()) == 3]
 
-                result = (author_name, *segments)
+                result = (author_name.lower(), *segments)
                 
                 print(result)
     spark.stop()
