@@ -21,10 +21,8 @@ def main():
             for commit_message in commit_messages:
                 words = commit_message.lower().split()
                 
-                # result = (author_name, *[tuple(words[i:i + n]) for i in range(len(words) - n + 1)])
                 segments = [commit_message[i:i + n] for i in range(0, len(commit_message), n) if len(commit_message[i:i + n].strip()) == 3]
 
-                # Create a tuple with the author's name in lowercase and the segments
                 result = (author_name, *segments)
                 
                 print(result)
