@@ -19,12 +19,15 @@ def main():
         
         if commit_messages and isinstance(commit_messages, list):
             for commit_message in commit_messages:
-                ngrams = [commit_message[i:i + n] for i in range(len(commit_message) - n + 1)]
+                words = commit_message.lower().split()
+                
+                # result = (author_name, *[tuple(words[i:i + n]) for i in range(len(words) - n + 1)])
+                segments = [commit_message[i:i + n] for i in range(0, len(commit_message), n) if len(commit_message[i:i + n].strip()) == 3]
 
-                print(f"Author: {author_name}")
-                print(f"Commit Message: {commit_message}")
-                print(f"3-Grams: {ngrams}")
-                print("\n")
+                # Create a tuple with the author's name in lowercase and the segments
+                result = (author_name, *segments)
+                
+                print(result)
     spark.stop()
 
 
